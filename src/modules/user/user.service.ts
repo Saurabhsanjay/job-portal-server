@@ -29,9 +29,22 @@ export const userService = {
         phoneNumber: userData.personalDetails?.phoneNumber,
         profilePicture: userData.personalDetails?.profilePicture,
         gender: userData.personalDetails?.gender,
+        isVisible: userData.personalDetails?.isVisible || false,
+        language: userData.personalDetails?.language || [],
+        address: userData.personalDetails?.address || {},
       },
       socialLogins: userData.socialLogins || [],
-      jobSeekerDetails: userData.jobSeekerDetails || {},
+      jobSeekerDetails: {
+        ...userData.jobSeekerDetails,
+        education: userData.jobSeekerDetails?.education?.map((edu) => ({
+          ...edu,
+          certifications: edu.certifications?.map((cert) => ({
+            ...cert,
+            expiryDate: cert.expiryDate,
+            date: cert.date,
+          })),
+        })) || [],
+      },
       employerDetails: userData.employerDetails || {},
       activityDetails: {
         accountStatus: userData.activityDetails?.accountStatus || AccountStatus.ACTIVE,

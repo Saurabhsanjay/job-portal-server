@@ -37,6 +37,7 @@ interface Education {
   institutionName: string;
   yearOfGraduation: number;
   certifications: {
+    expiryDate: any;
     name: string;
     date: Date;
   }[];
@@ -131,6 +132,14 @@ interface PersonalDetails {
   profilePicture?: string;
   dateOfBirth?: Date;
   gender?: Gender;
+  isVisible?: boolean;
+  language?: string[];
+  address?: {
+    country?: string;
+    city?: string;
+    state?: string;
+    pincode?: string;
+  };
 }
 
 export enum AccountStatus {

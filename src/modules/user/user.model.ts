@@ -28,6 +28,14 @@ const userSchema: Schema = new Schema({
     profilePicture: { type: String },
     dateOfBirth: { type: Date },
     gender: { type: String, enum: Object.values(Gender) },
+    isVisible: { type: Boolean, default: false },
+    language: [{ type: String }],
+    address: {
+      country: { type: String },
+      city: { type: String },
+      state: { type: String },
+      pincode: { type: String },
+    },
   },
   socialLogins: [
     {
@@ -45,7 +53,8 @@ const userSchema: Schema = new Schema({
         certifications: [
           {
             name: { type: String },
-            date: { type: Date },
+            date: { type: Date , required: true},
+            expiryDate: { type: Date },
           },
         ],
       },

@@ -18,6 +18,14 @@ const userSchema = z.object({
     .optional(),
   email: z.string().email('Invalid email format'),
   dateOfBirth: z.string().transform((val) => new Date(val)),
+  isVisible: z.boolean().optional(),
+  language: z.array(z.string()).optional(),
+  address: z.object({
+    country: z.string().optional(),
+    city: z.string().optional(),
+    state: z.string().optional(),
+    pincode: z.string().optional(),
+  }).optional(),
 });
 
 const loginSchema = z.object({
@@ -73,6 +81,14 @@ const updateUserSchema = z.object({
     .optional(),
   profilePicture: z.string().optional(),
   dateOfBirth: z.string().optional(),
+  isVisible: z.boolean().optional(),
+  language: z.array(z.string()).optional(),
+  address: z.object({
+    country: z.string().optional(),
+    city: z.string().optional(),
+    state: z.string().optional(),
+    pincode: z.string().optional(),
+  }).optional(),
   gender: z.nativeEnum(Gender, {
       errorMap: () => ({ message: 'Invalid Gender Value' }),
     }).optional(),
